@@ -17,7 +17,7 @@
 
 ## 예시
 ![기존 방식](https://github.com/OverFlow37/images/blob/main/%EC%84%A0%ED%83%9D%EC%A7%80%20%EC%88%98%EC%A0%95%20%EC%9D%B4%EC%A0%84.jpg?raw=true)
-<img src="https://github.com/OverFlow37/images/blob/main/%EC%84%A0%ED%83%9D%EC%A7%80%20%EC%88%98%EC%A0%95%20%EC%9D%B4%ED%9B%84.jpg?raw=true" width="200" height="400"/>
+<img src="https://github.com/OverFlow37/images/blob/main/%EC%84%A0%ED%83%9D%EC%A7%80%20%EC%88%98%EC%A0%95%20%EC%9D%B4%ED%9B%84.jpg?raw=true" width="600" height="340"/>
 
   
 그림과 같이 기존 게임에서 객관식 선택지를 요구하는 상황에서 머신러닝 모델을 사용하여 주관식 문장을 입력받는 방식으로 변경
