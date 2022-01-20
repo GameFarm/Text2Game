@@ -28,7 +28,7 @@
 
 ## 모델 파이프라인
 <ceter>
-  <img src="https://github.com/OverFlow37/images/blob/main/%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4%20%EA%B8%B0%EB%B0%98%20%EB%AA%A8%EB%8D%B8%20%EC%9B%90%EB%A6%AC.png?raw=true" width="500" height="450"/>
+  <img src="https://github.com/OverFlow37/images/blob/main/%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4%20%EA%B8%B0%EB%B0%98%20%EB%AA%A8%EB%8D%B8%20%EC%9B%90%EB%A6%AC.png?raw=true" width="550" height="450"/>
 </ceter>
 두 개의 BERT 모델을 활용하여 플레이어의 문장을 인식한다.  
 첫 번째 Check Conversation Context 모델은 문장이 맥락에 맞는 문장인지 판별한다.  
