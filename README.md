@@ -11,17 +11,19 @@
 * NLP 기반 머신러닝 기술이 적용된 소수의 사례도 문장 생성형 모델이 갖는 한계점에서 벗어나지 못함.
 
 ## 해결방안
-<ceter>
+<div style="text-align : center;">
   <img src="https://github.com/OverFlow37/images/blob/main/%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4%20%EA%B8%B0%EB%B0%98%20%EB%AA%A8%EB%8D%B8%20%ED%99%98%EB%A5%98%20%EB%AA%A8%ED%98%95.png?raw=true" width="500" height="450"/>
-</center>
+</div>
 * 문장 생성을 포기하는 대신 BERT를 이용해 자연어 감성분석 모델을 제작하여 사용.  
 * 머신러닝 모델과 게임 시스템이 서로 input과 output을 주고받으면서 상호작용.
 
 ## 예시
-<ceter>
-  <img src="https://github.com/OverFlow37/images/blob/main/%EC%84%A0%ED%83%9D%EC%A7%80%20%EC%88%98%EC%A0%95%20%EC%9D%B4%EC%A0%84.jpg?raw=true" width="700" height="400"/></center>
-<ceter>
-  <img src="https://github.com/OverFlow37/images/blob/main/%EC%84%A0%ED%83%9D%EC%A7%80%20%EC%88%98%EC%A0%95%20%EC%9D%B4%ED%9B%84.jpg?raw=true" width="700" height="400"/></ceter>
+<div style="text-align : center;">
+  <img src="https://github.com/OverFlow37/images/blob/main/%EC%84%A0%ED%83%9D%EC%A7%80%20%EC%88%98%EC%A0%95%20%EC%9D%B4%EC%A0%84.jpg?raw=true" width="700" height="400"/>
+</div>
+<div style="text-align : center;">
+  <img src="https://github.com/OverFlow37/images/blob/main/%EC%84%A0%ED%83%9D%EC%A7%80%20%EC%88%98%EC%A0%95%20%EC%9D%B4%ED%9B%84.jpg?raw=true" width="700" height="400"/>
+</div>
 
   
 그림과 같이 기존 게임에서 객관식 선택지를 요구하는 상황에서 머신러닝 모델을 사용하여 주관식 문장을 입력받는 방식으로 변경
