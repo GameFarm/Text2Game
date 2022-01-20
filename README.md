@@ -16,7 +16,7 @@
 * 머신러닝 모델과 게임 시스템이 서로 input과 output을 주고받으면서 상호작용.
 
 ## 예시
-![기존 방식](https://github.com/OverFlow37/images/blob/main/%EC%84%A0%ED%83%9D%EC%A7%80%20%EC%88%98%EC%A0%95%20%EC%9D%B4%EC%A0%84.jpg?raw=true)
+<img src="https://github.com/OverFlow37/images/blob/main/%EC%84%A0%ED%83%9D%EC%A7%80%20%EC%88%98%EC%A0%95%20%EC%9D%B4%EC%A0%84.jpg?raw=true" width="600" height="340"/>
 <img src="https://github.com/OverFlow37/images/blob/main/%EC%84%A0%ED%83%9D%EC%A7%80%20%EC%88%98%EC%A0%95%20%EC%9D%B4%ED%9B%84.jpg?raw=true" width="600" height="340"/>
 
   
