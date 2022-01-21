@@ -39,3 +39,5 @@
 
 ## 참조 코드
 1.https://github.com/SKTBrain/KoBERT 코버트 깃허브
+2.https://github.com/KLUE-benchmark/KLUE 클루 깃허브
+
