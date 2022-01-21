@@ -38,7 +38,6 @@
 이 두 가지 모델을 결합하여 플레이어가 어떤 의도로 문장을 입력했는지 판단하여 게임 시스템에 값을 전달한다.  
 
 ## 참조 코드
-1. 코버트 깃허브 https://github.com/SKTBrain/KoBERT     
-2. 코바트 깃허브 https://github.com/SKT-AI/KoBART   
-3. 클루 깃허브   https://github.com/KLUE-benchmark/KLUE 
+1. KoBERT 깃허브 https://github.com/SKTBrain/KoBERT      
+2. KLUE 깃허브   https://github.com/KLUE-benchmark/KLUE 
 
