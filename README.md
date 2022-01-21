@@ -40,4 +40,4 @@
 ## 참조 코드
 1. KoBERT 깃허브 https://github.com/SKTBrain/KoBERT      
 2. KLUE 깃허브   https://github.com/KLUE-benchmark/KLUE 
-
+3. KLUE-BERT-base https://huggingface.co/klue/bert-base
