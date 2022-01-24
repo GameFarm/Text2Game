@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# Yagi_ignore_file
+dataset/   #github 및 모두의 말뭉치 데이터셋 공유 우려
