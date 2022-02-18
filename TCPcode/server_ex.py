@@ -2,7 +2,7 @@ from concurrent.futures import thread
 import socket
 import threading
 
-ip_host = '172.30.151.139'
+ip_host = '127.0.0.1'
 port = 9008
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
