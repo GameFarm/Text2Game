@@ -1,6 +1,8 @@
 import socket
 import threading
 
+from sqlalchemy import null
+
 nickname = input("대화방에서 이용 할 별명을 입력해주세요: ")
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -19,8 +21,11 @@ def receive():
             else:
                 print(message)
         except:
-            print("error!! shutting off 꺼집니다.")
-            client_socket.close()
+            if client_socket is null:
+                print('error!! shutting off 꺼집니다.')
+            else:
+                print("client 정상 종료됩니다.")
+                client_socket.close()
             break
 
 
@@ -30,10 +35,12 @@ def write():
         client_socket.send(message.encode('utf-8'))
         if message == f'{nickname}: /quit':
             close_client()
+            break
 
 
 def close_client():
     print('클라이언트 종료')
+    client_socket.shutdown(socket.SHUT_RDWR)
     client_socket.close()
 
 

@@ -31,11 +31,11 @@ def handle(client):
             broadcast(message)
         except:
             index = clients_list.index(client)  # error and terminate 클라이언트 지움
-            clients_list.remove(message)
+            clients_list.remove(client)
             client.close()
             nickname = clients_nicknames[index]
-            broadcast(f'{nickname} 박멸됨!'.encode('utf-8'))
-            nickname.remove(nickname)
+            broadcast(f'{nickname} 사고사!'.encode('utf-8'))
+            clients_nicknames.remove(nickname)
             break
 
 # 새 클라이언트 받기
