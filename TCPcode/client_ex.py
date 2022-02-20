@@ -21,11 +21,11 @@ def receive():
             else:
                 print(message)
         except:
-            if client_socket is null:
-                print('error!! shutting off 꺼집니다.')
-            else:
-                print("client 정상 종료됩니다.")
+            if client_socket.fileno() == -1:
+                print('client 정상 종료됩니다.')
                 client_socket.close()
+            else:
+                print("프로그램 오류발생.")
             break
 
 
@@ -39,13 +39,20 @@ def write():
 
 
 def close_client():
-    print('클라이언트 종료')
+    print('클라이언트 종료 시작')
     client_socket.shutdown(socket.SHUT_RDWR)
     client_socket.close()
 
 
-receive_thread = threading.Thread(target=receive)
-receive_thread.start()
+try:
+    receive_thread = threading.Thread(target=receive)
+    receive_thread.start()
 
-write_thread = threading.Thread(target=write)
-write_thread.start()
+    write_thread = threading.Thread(target=write)
+    write_thread.start()
+
+except Exception as e:
+    write_thread.kill()
+    receive_thread.kill()
+    print(e)
+    print('종료됩니다')
