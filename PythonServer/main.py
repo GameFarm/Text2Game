@@ -15,9 +15,8 @@ def sentiment_model(client_socket, text):
     # print('[sentiment] 결과 : ', predict)
     # message = "[sentiment]" + str(list(predict[0]))
 
-    message = "[Test] sentiment model data"
-    client_socket.send(message.encode('utf-8'))
-    time.sleep(2)
+    client_socket.send(text.encode('utf-8'))
+    time.sleep(1)
 
 
 def emotion_model(client_socket, text):
@@ -26,9 +25,8 @@ def emotion_model(client_socket, text):
     # print('[sentiment] 결과 : ', predict)
     # message = "[sentiment]" + str(list(predict[0]))
 
-    message = "[Test] emotion model data"
-    client_socket.send(message.encode('utf-8'))
-    time.sleep(2)
+    client_socket.send(text.encode('utf-8'))
+    time.sleep(1)
 
 
 def context_model(client_socket, text):
@@ -37,8 +35,7 @@ def context_model(client_socket, text):
     # print('[sentiment] 결과 : ', predict)
     # message = "[sentiment]" + str(list(predict[0]))
 
-    message = "[Test] context model data"
-    client_socket.send(message.encode('utf-8'))
+    client_socket.send(text.encode('utf-8'))
     time.sleep(2)
 
 
@@ -48,8 +45,7 @@ def question_model(client_socket, text):
     # print('[sentiment] 결과 : ', predict)
     # message = "[sentiment]" + str(list(predict[0]))
 
-    message = "[Test] question model data"
-    client_socket.send(message.encode('utf-8'))
+    client_socket.send(text.encode('utf-8'))
     time.sleep(2)
 
 
@@ -72,10 +68,15 @@ def server_start():
             msg = str(client_address) + " 접속"
             client_socket.sendall(msg.encode())
         elif client_socket is not None:
-            # Client 에서 보내는 기능이 있을때 활성화
-            message = client_socket.recv(1024).decode('utf-8', 'ignore')
+            # Client 에서 메세지 발신 했을때 활성화
+            message = client_socket.recv(32).decode('utf-8')
+
+            # 받은 데이터가 없으면 loop진행
+            if not message:
+                continue
+            
             pre_msg = message.split(',')
-            print("[Client msg] ", pre_msg)
+            print("[Client msg] ", message)
 
             if pre_msg[0] == "sentiment":
                 sentiment_model(client_socket, pre_msg[1])
@@ -85,6 +86,8 @@ def server_start():
                 context_model(client_socket, pre_msg[1])
             elif pre_msg[0] == "question":
                 question_model(client_socket, pre_msg[1])
+
+            time.sleep(1)
 
             # server_print_test(client_socket)
 
