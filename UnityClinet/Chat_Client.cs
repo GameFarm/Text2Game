@@ -27,30 +27,48 @@ public class Chat_Client : MonoBehaviour
     {
         if (stream.DataAvailable)
         {
-            receivedBuffer = new byte[1024];
+            receivedBuffer = new byte[32];
             stream.Read(receivedBuffer, 0, receivedBuffer.Length);
             string msg = Encoding.UTF8.GetString(receivedBuffer, 0, receivedBuffer.Length);
             Debug.Log(msg);
-            Array.Clear(receivedBuffer, 0, receivedBuffer.Length);
+            //Array.Clear(receivedBuffer, 0, receivedBuffer.Length);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
-            send_message("sentiment, 오늘 너무 기분이 좋아.");
+            Delay(1000);
+            send_message("sentiment,sentiment data");
         }
         if (Input.GetKey(KeyCode.E))
         {
-            send_message("emotion, 오늘 너무 기분이 좋아.");
+            Delay(1000);
+            send_message("emotion,emotion data");
         }
         if (Input.GetKey(KeyCode.C))
         {
-            send_message("context, 오늘 너무 기분이 좋아.");
+            Delay(1000);
+            send_message("context,context data");
         }
         if (Input.GetKey(KeyCode.Q))
         {
-            send_message("question, 오늘 너무 기분이 좋아.");
+            Delay(1000);
+            send_message("question,question data");
         }
     }
+    private static DateTime Delay(int MS)
+    {
+        DateTime ThisMoment = DateTime.Now;
+        TimeSpan duration = new TimeSpan(0, 0, 0, 0, MS);
+        DateTime AfterWards = ThisMoment.Add(duration);
+
+        while (AfterWards >= ThisMoment)
+        {
+            ThisMoment = DateTime.Now;
+        }
+
+        return DateTime.Now;
+    }
+
 
     void init_CheckReceive()
     {
@@ -77,6 +95,7 @@ public class Chat_Client : MonoBehaviour
     {
         byte[] buff = Encoding.UTF8.GetBytes(msg);
         stream.Write(buff, 0, buff.Length);
+        buff = new byte[32];
     }
 
     void CloseSocket() // Scene 종료시 호출
