@@ -31,6 +31,24 @@ public class Chat_Client : MonoBehaviour
             stream.Read(receivedBuffer, 0, receivedBuffer.Length);
             string msg = Encoding.UTF8.GetString(receivedBuffer, 0, receivedBuffer.Length);
             Debug.Log(msg);
+            Array.Clear(receivedBuffer, 0, receivedBuffer.Length);
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            send_message("sentiment, 오늘 너무 기분이 좋아.");
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            send_message("emotion, 오늘 너무 기분이 좋아.");
+        }
+        if (Input.GetKey(KeyCode.C))
+        {
+            send_message("context, 오늘 너무 기분이 좋아.");
+        }
+        if (Input.GetKey(KeyCode.Q))
+        {
+            send_message("question, 오늘 너무 기분이 좋아.");
         }
     }
 
