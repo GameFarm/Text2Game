@@ -50,7 +50,7 @@ def question_model(client_socket, text):
 
 
 def server_start():
-    host = '127.0.0.1'
+    host = '10.128.0.4'
     port = 8000
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -69,12 +69,20 @@ def server_start():
             client_socket.sendall(msg.encode())
         elif client_socket is not None:
             # Client 에서 메세지 발신 했을때 활성화
-            message = client_socket.recv(32).decode('utf-8')
+            try:
+                message = client_socket.recv(32).decode('utf-8')
+                client_socket.send("server received".encode('utf-8'))
+
+            except Exception as e:
+                print("scene changed")
+                client_socket.close()
+                client_socket = None
+                client_address = None
 
             # 받은 데이터가 없으면 loop진행
             if not message:
                 continue
-            
+
             pre_msg = message.split(',')
             print("[Client msg] ", message)
 
