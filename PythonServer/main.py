@@ -1,6 +1,7 @@
 import socket
 import time
 import select
+import logging
 
 import sys
 import os
@@ -17,7 +18,7 @@ from conversationEvaluator import ConversationEvaluator
 # 4. 모델 정상 작동 여부 확인
 # 5. 클라이언트가 보낸 데이터가 String이 아닐때 서버에서 정상작동 여부
 #   5.1  예외처리
-#   5.2  if 문으로 string 값인지 확인후, 아니면 return
+#   5.2  if 문으로 string 값인지 확인후, 아니면 return, 129줄 이후 else 를 추가하여 처리하면 좋을 듯 합니다.
 
 # [잠재적버그] 
 # time.sleep 사용시 비동기화 방식으로 확장했을 때 시퀀스가 꼬이는 상황이 발생할 수 있다.
@@ -41,7 +42,7 @@ def sentiment_model(client_socket, model_evaluator, text):
     predict = model_evaluator.predict_sentiment(text)
     print('[server][sentiment] 결과 : ', predict)
     
-    message = "[sentiment]" + str(list(predict))
+    message = "[sentiment]@" + str(list(predict))
     client_socket.send(message.encode('utf-8'))
     time.sleep(1)
 
@@ -50,7 +51,7 @@ def emotion_model(client_socket, model_evaluator, text):
     predict = model_evaluator.predict_emotion(text)
     print('[emotion] 결과 : ', predict)
     
-    message = "[emotion]" + str(list(predict))
+    message = "[emotion]@" + str(list(predict))
     client_socket.send(message.encode('utf-8'))
     time.sleep(1)
 
@@ -59,7 +60,7 @@ def context_model(client_socket, model_evaluator, text):
     predict = model_evaluator.predict_context(text)
     print('[context] 결과 : ', predict)
     
-    message = "[context]" + str(list(predict))
+    message = "[context]@" + str(list(predict))
     client_socket.send(message.encode('utf-8'))
     time.sleep(1)
 
@@ -68,7 +69,7 @@ def question_model(client_socket, model_evaluator, text):
     predict = model_evaluator.predict_sts(text)
     print('[sentiment] 결과 : ', predict)
     
-    message = "[sentiment]" + str(list(predict))
+    message = "[sentiment]@" + str(list(predict))
     client_socket.send(message.encode('utf-8'))
     time.sleep(1)
 
