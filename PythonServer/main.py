@@ -1,6 +1,11 @@
 import socket
 import time
-from model_test import SentimentEvaluator
+import select
+
+import sys
+import os
+sys.path.append("/home/koj3767/scenarioBasedModel")
+from conversationEvaluator import ConversationEvaluator
 
 
 def server_print_test(client_socket):
@@ -9,48 +14,44 @@ def server_print_test(client_socket):
     time.sleep(5)
 
 
-def sentiment_model(client_socket, text):
-    # sentiment_evaluator = SentimentEvaluator()
-    # predict = sentiment_evaluator.evaluate_sentiment(text)
-    # print('[sentiment] 결과 : ', predict)
-    # message = "[sentiment]" + str(list(predict[0]))
-
-    client_socket.send(text.encode('utf-8'))
+def sentiment_model(client_socket, model_evaluator, text):
+    predict = model_evaluator.predict_sentiment(text)
+    print('[sentiment] 결과 : ', predict)
+    
+    message = "[sentiment]" + str(list(predict[0]))
+    client_socket.send(message.encode('utf-8'))
     time.sleep(1)
 
 
-def emotion_model(client_socket, text):
-    # emotion_evaluator = SentimentEvaluator()
-    # predict = emotion_evaluator.evaluate_sentiment(text)
-    # print('[sentiment] 결과 : ', predict)
-    # message = "[sentiment]" + str(list(predict[0]))
-
-    client_socket.send(text.encode('utf-8'))
+def emotion_model(client_socket, model_evaluator, text):
+    predict = model_evaluator.predict_emotion(text)
+    print('[emotion] 결과 : ', predict)
+    
+    message = "[emotion]" + str(list(predict[0]))
+    client_socket.send(message.encode('utf-8'))
     time.sleep(1)
 
 
-def context_model(client_socket, text):
-    # emotion_evaluator = SentimentEvaluator()
-    # predict = emotion_evaluator.evaluate_sentiment(text)
-    # print('[sentiment] 결과 : ', predict)
-    # message = "[sentiment]" + str(list(predict[0]))
+def context_model(client_socket, model_evaluator, text):
+    predict = model_evaluator.predict_context(text)
+    print('[context] 결과 : ', predict)
+    
+    message = "[context]" + str(list(predict[0]))
+    client_socket.send(message.encode('utf-8'))
+    time.sleep(1)
 
-    client_socket.send(text.encode('utf-8'))
-    time.sleep(2)
 
-
-def question_model(client_socket, text):
-    # emotion_evaluator = SentimentEvaluator()
-    # predict = emotion_evaluator.evaluate_sentiment(text)
-    # print('[sentiment] 결과 : ', predict)
-    # message = "[sentiment]" + str(list(predict[0]))
-
-    client_socket.send(text.encode('utf-8'))
-    time.sleep(2)
+def question_model(client_socket, model_evaluator, text):
+    predict = model_evaluator.predict_sts(text)
+    print('[sentiment] 결과 : ', predict)
+    
+    message = "[sentiment]" + str(list(predict[0]))
+    client_socket.send(message.encode('utf-8'))
+    time.sleep(1)
 
 
 def server_start():
-    host = '10.128.0.4'
+    host = '10.128.0.4'   #curl ifconfig.me 를 이용하여 외부ip를 알 수 있다고한다.
     port = 8000
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -59,6 +60,7 @@ def server_start():
     server_socket.listen()
 
     client_socket = None
+    model_evaluator = ConversationEvaluator()
 
     while True:
 
@@ -71,10 +73,9 @@ def server_start():
             # Client 에서 메세지 발신 했을때 활성화
             try:
                 message = client_socket.recv(32).decode('utf-8')
-                client_socket.send("server received".encode('utf-8'))
-
-            except Exception as e:
-                print("scene changed")
+                client_socket.send("서버 인지".encode('utf-8'))
+            except:
+                print('client_left')
                 client_socket.close()
                 client_socket = None
                 client_address = None
@@ -87,13 +88,13 @@ def server_start():
             print("[Client msg] ", message)
 
             if pre_msg[0] == "sentiment":
-                sentiment_model(client_socket, pre_msg[1])
+                sentiment_model(client_socket, model_evaluator, pre_msg[1])
             elif pre_msg[0] == "emotion":
-                emotion_model(client_socket, pre_msg[1])
+                emotion_model(client_socket, model_evaluator, pre_msg[1])
             elif pre_msg[0] == "context":
-                context_model(client_socket, pre_msg[1])
+                context_model(client_socket, model_evaluator, pre_msg[1])
             elif pre_msg[0] == "question":
-                question_model(client_socket, pre_msg[1])
+                question_model(client_socket, model_evaluator, pre_msg[1])
 
             time.sleep(1)
 
