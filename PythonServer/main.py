@@ -7,6 +7,28 @@ import os
 sys.path.append("/home/koj3767/scenarioBasedModel")
 from conversationEvaluator import ConversationEvaluator
 
+# from model_test import SentimentEvaluatoir
+
+
+# [ 테스트 항목 ]
+# 1. 클라이언트가 정상적으로 종료되는가?
+# 2. 클라이언트가 서버와 재 연결 시도시 정상적으로 연결되는가?
+# 3. 클라이언트가 32byte를 초과하는 데이터 송수신시 발생하는 오류 확인
+# 4. 모델 정상 작동 여부 확인
+# 5. 클라이언트가 보낸 데이터가 String이 아닐때 서버에서 정상작동 여부
+#   5.1  예외처리
+#   5.2  if 문으로 string 값인지 확인후, 아니면 return
+
+# [잠재적버그] 
+# time.sleep 사용시 비동기화 방식으로 확장했을 때 시퀀스가 꼬이는 상황이 발생할 수 있다.
+
+
+
+
+
+
+
+
 
 def server_print_test(client_socket):
     message = "[Server] 연결 확인용 "
@@ -15,10 +37,11 @@ def server_print_test(client_socket):
 
 
 def sentiment_model(client_socket, model_evaluator, text):
+    print('[server][sentiment model] 클라이언트 메세지 : ', text)
     predict = model_evaluator.predict_sentiment(text)
-    print('[sentiment] 결과 : ', predict)
+    print('[server][sentiment] 결과 : ', predict)
     
-    message = "[sentiment]" + str(list(predict[0]))
+    message = "[sentiment]" + str(list(predict))
     client_socket.send(message.encode('utf-8'))
     time.sleep(1)
 
@@ -27,7 +50,7 @@ def emotion_model(client_socket, model_evaluator, text):
     predict = model_evaluator.predict_emotion(text)
     print('[emotion] 결과 : ', predict)
     
-    message = "[emotion]" + str(list(predict[0]))
+    message = "[emotion]" + str(list(predict))
     client_socket.send(message.encode('utf-8'))
     time.sleep(1)
 
@@ -60,10 +83,9 @@ def server_start():
     server_socket.listen()
 
     client_socket = None
-    model_evaluator = ConversationEvaluator()
+    model_evaluator = ConversationEvaluator()# model create
 
     while True:
-
         if client_socket is None:
             client_socket, client_address = server_socket.accept()
             print('[연결] ', client_address)
@@ -75,7 +97,7 @@ def server_start():
                 message = client_socket.recv(32).decode('utf-8')
                 client_socket.send("서버 인지".encode('utf-8'))
             except:
-                print('client_left')
+                print('[Except] client_abnormal_close')
                 client_socket.close()
                 client_socket = None
                 client_address = None
@@ -95,6 +117,14 @@ def server_start():
                 context_model(client_socket, model_evaluator, pre_msg[1])
             elif pre_msg[0] == "question":
                 question_model(client_socket, model_evaluator, pre_msg[1])
+            elif pre_msg[0] == "client_close":
+                msg = '[Client connect exit][OK] client_close'
+                client_socket.send(msg.encode('utf-8'))
+                print('[Server System] ', msg)
+                time.sleep(0.5)
+                client_socket.close()
+                client_socket = None
+                client_address = None
 
             time.sleep(1)
 
