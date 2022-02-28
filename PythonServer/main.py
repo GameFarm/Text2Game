@@ -1,10 +1,10 @@
-import socket
+import re
+import os
+import sys
 import time
+import socket
 import select
 import logging
-
-import sys
-import os
 sys.path.append("/home/koj3767/scenarioBasedModel")
 from conversationEvaluator import ConversationEvaluator
 
@@ -26,8 +26,18 @@ from conversationEvaluator import ConversationEvaluator
 
 
 
+# 데이터 전처리 함수
+def preprocess_sentence(sentence):
+    # list의 []는 공백처리
+    sentence = re.sub(r'[" "]+', " ", sentence)
+    # 문장 부호 이외 다른 특수문자 제거
+    sentence = re.sub(r"([?.!,])", r" \1 ", sentence)   
+    # 영문자, 한글, 숫자, 주요 특수문자 이외 모든 문자는 공백처리
+    sentence = re.sub(r"[^a-zA-Zㄱ-ㅎ가-힣0-9?.!,]+", " ", sentence)   
+    # 단어 좌우 공백 제거
+    sentence = sentence.strip()
 
-
+    return sentence
 
 
 
@@ -48,6 +58,7 @@ def sentiment_model(client_socket, model_evaluator, text):
 
 
 def emotion_model(client_socket, model_evaluator, text):
+    print('[server][emotion model] 클라이언트 메세지 : ', text)
     predict = model_evaluator.predict_emotion(text)
     print('[emotion] 결과 : ', predict)
     
@@ -57,10 +68,14 @@ def emotion_model(client_socket, model_evaluator, text):
 
 
 def context_model(client_socket, model_evaluator, text):
-    predict = model_evaluator.predict_context(text)
+    print('[server][context model] 클라이언트 메세지 : ', text)
+    result = preprocess_sentence(str(text)).split(',')
+    print('[server][test] 분할 결과 : ',result)
+        
+    predict = model_evaluator.predict_context(result[0], result[1])
     print('[context] 결과 : ', predict)
     
-    message = "[context]@" + str(list(predict))
+    message = "[context]@" + str(predict)
     client_socket.send(message.encode('utf-8'))
     time.sleep(1)
 
@@ -111,13 +126,13 @@ def server_start():
             print("[Client msg] ", message)
 
             if pre_msg[0] == "sentiment":
-                sentiment_model(client_socket, model_evaluator, pre_msg[1])
+                sentiment_model(client_socket, model_evaluator, pre_msg[1:])
             elif pre_msg[0] == "emotion":
-                emotion_model(client_socket, model_evaluator, pre_msg[1])
+                emotion_model(client_socket, model_evaluator, pre_msg[1:])
             elif pre_msg[0] == "context":
-                context_model(client_socket, model_evaluator, pre_msg[1])
+                context_model(client_socket, model_evaluator, pre_msg[1:])
             elif pre_msg[0] == "question":
-                question_model(client_socket, model_evaluator, pre_msg[1])
+                question_model(client_socket, model_evaluator, pre_msg[1:])
             elif pre_msg[0] == "client_close":
                 msg = '[Client connect exit][OK] client_close'
                 client_socket.send(msg.encode('utf-8'))
