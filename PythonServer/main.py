@@ -59,7 +59,7 @@ def context_model(client_socket, model_evaluator, text):
     predict = model_evaluator.predict_context(text)
     print('[context] 결과 : ', predict)
     
-    message = "[context]" + str(list(predict[0]))
+    message = "[context]" + str(list(predict))
     client_socket.send(message.encode('utf-8'))
     time.sleep(1)
 
@@ -68,7 +68,7 @@ def question_model(client_socket, model_evaluator, text):
     predict = model_evaluator.predict_sts(text)
     print('[sentiment] 결과 : ', predict)
     
-    message = "[sentiment]" + str(list(predict[0]))
+    message = "[sentiment]" + str(list(predict))
     client_socket.send(message.encode('utf-8'))
     time.sleep(1)
 
@@ -94,7 +94,7 @@ def server_start():
         elif client_socket is not None:
             # Client 에서 메세지 발신 했을때 활성화
             try:
-                message = client_socket.recv(32).decode('utf-8')
+                message = client_socket.recv(128).decode('utf-8')
                 client_socket.send("서버 인지".encode('utf-8'))
             except:
                 print('[Except] client_abnormal_close')
