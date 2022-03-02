@@ -44,11 +44,9 @@ def preprocess_sentence(sentence):
 def server_print_test(client_socket):
     message = "[Server] 연결 확인용 "
     client_socket.send(message.encode('utf-8'))
-    time.sleep(5)
 
 
 def sentiment_model(client_socket, model_evaluator, text):
-    #split 추가
     print('[server][sentiment model] 클라이언트 메세지 : ', text)
     result = preprocess_sentence(str(text)).split(',')
        
@@ -57,11 +55,9 @@ def sentiment_model(client_socket, model_evaluator, text):
     
     message = "[sentiment]@" + str(list(predict))
     client_socket.send(message.encode('utf-8'))
-    time.sleep(1)
 
 
 def emotion_model(client_socket, model_evaluator, text):
-    #split 추가
     print('[server][emotion model] 클라이언트 메세지 : ', text)
     result = preprocess_sentence(str(text)).split(',')
     
@@ -70,7 +66,6 @@ def emotion_model(client_socket, model_evaluator, text):
     
     message = "[emotion]@" + str(list(predict))
     client_socket.send(message.encode('utf-8'))
-    time.sleep(1)
 
 
 def context_model(client_socket, model_evaluator, text):
@@ -83,7 +78,6 @@ def context_model(client_socket, model_evaluator, text):
     
     message = "[context]@" + str(predict)
     client_socket.send(message.encode('utf-8'))
-    time.sleep(1)
 
 
 def question_model(client_socket, model_evaluator, text):
@@ -92,7 +86,6 @@ def question_model(client_socket, model_evaluator, text):
     
     message = "[sentiment]@" + str(list(predict))
     client_socket.send(message.encode('utf-8'))
-    time.sleep(1)
 
 
 def server_start():
@@ -105,7 +98,7 @@ def server_start():
     server_socket.listen()
 
     client_socket = None
-    model_evaluator = ConversationEvaluator()# model create
+    model_evaluator = ConversationEvaluator()
     print('서버 가동!')
 
     while True:
@@ -125,7 +118,7 @@ def server_start():
                 client_socket = None
                 client_address = None
 
-            # 받은 데이터가 없으면 loop진행
+            # 받은 데이터가 없으면 loop 다시 진행
             if not message:
                 continue
 
@@ -148,10 +141,6 @@ def server_start():
                 client_socket.close()
                 client_socket = None
                 client_address = None
-
-            time.sleep(1)
-
-            # server_print_test(client_socket)
 
     client_socket.close()
     server_socket.close()
