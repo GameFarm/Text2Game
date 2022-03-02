@@ -48,8 +48,11 @@ def server_print_test(client_socket):
 
 
 def sentiment_model(client_socket, model_evaluator, text):
+    #split 추가
     print('[server][sentiment model] 클라이언트 메세지 : ', text)
-    predict = model_evaluator.predict_sentiment(text)
+    result = preprocess_sentence(str(text)).split(',')
+       
+    predict = model_evaluator.predict_sentiment(result[0])
     print('[server][sentiment] 결과 : ', predict)
     
     message = "[sentiment]@" + str(list(predict))
@@ -58,8 +61,11 @@ def sentiment_model(client_socket, model_evaluator, text):
 
 
 def emotion_model(client_socket, model_evaluator, text):
+    #split 추가
     print('[server][emotion model] 클라이언트 메세지 : ', text)
-    predict = model_evaluator.predict_emotion(text)
+    result = preprocess_sentence(str(text)).split(',')
+    
+    predict = model_evaluator.predict_emotion(result[0])
     print('[emotion] 결과 : ', predict)
     
     message = "[emotion]@" + str(list(predict))
@@ -100,6 +106,7 @@ def server_start():
 
     client_socket = None
     model_evaluator = ConversationEvaluator()# model create
+    print('서버 가동!')
 
     while True:
         if client_socket is None:
@@ -110,10 +117,10 @@ def server_start():
         elif client_socket is not None:
             # Client 에서 메세지 발신 했을때 활성화
             try:
-                message = client_socket.recv(128).decode('utf-8')
+                message = client_socket.recv(1024).decode('utf-8')
                 client_socket.send("서버 인지".encode('utf-8'))
-            except:
-                print('[Except] client_abnormal_close')
+            except Exception as e:
+                print(f'[Except] client_abnormal_close and {e} happened')
                 client_socket.close()
                 client_socket = None
                 client_address = None
