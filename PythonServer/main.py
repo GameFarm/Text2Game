@@ -18,7 +18,7 @@ from conversationEvaluator import ConversationEvaluator
 # 4. 모델 정상 작동 여부 확인
 # 5. 클라이언트가 보낸 데이터가 String이 아닐때 서버에서 정상작동 여부
 #   5.1  예외처리
-#   5.2  if 문으로 string 값인지 확인후, 아니면 return, 129줄 이후 else 를 추가하여 처리하면 좋을 듯 합니다.
+#   5.2  if 문으로 string 값인지 확인후, 아니면 return, 129줄 이후 elif 를 추가하여 처리하면 좋을 듯 합니다만 발생되나요?
 
 # [잠재적버그] 
 # time.sleep 사용시 비동기화 방식으로 확장했을 때 시퀀스가 꼬이는 상황이 발생할 수 있다.
@@ -80,11 +80,15 @@ def context_model(client_socket, model_evaluator, text):
     client_socket.send(message.encode('utf-8'))
 
 
-def question_model(client_socket, model_evaluator, text):
-    predict = model_evaluator.predict_sts(text)
-    print('[sentiment] 결과 : ', predict)
+def sts_model(client_socket, model_evaluator, text):
+    print('[server][sts model] 클라이언트 메세지 : ', text)
+    result = preprocess_sentence(str(text)).split(',')
+    print('[server][test] 분할 결과 : ',result)    
     
-    message = "[sentiment]@" + str(list(predict))
+    predict = model_evaluator.predict_sts(result[0], result[1])
+    print('[sts] 결과 : ', predict)
+    
+    message = "[sts]@" + str(predict)
     client_socket.send(message.encode('utf-8'))
 
 
@@ -132,7 +136,7 @@ def server_start():
             elif pre_msg[0] == "context":
                 context_model(client_socket, model_evaluator, pre_msg[1:])
             elif pre_msg[0] == "question":
-                question_model(client_socket, model_evaluator, pre_msg[1:])
+                sts_model(client_socket, model_evaluator, pre_msg[1:])
             elif pre_msg[0] == "client_close":
                 msg = '[Client connect exit][OK] client_close'
                 client_socket.send(msg.encode('utf-8'))
