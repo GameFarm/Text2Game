@@ -127,10 +127,7 @@ def server_start():
         elif client_socket is not None:
             # Client 에서 메세지 발신 했을때 활성화
             try:
-                logger.info("[System] Client socket 객체가 있는 분기점 호출")
-                logger.info("[System] Socket Stream size : 1024 Byte")
                 message = client_socket.recv(1024).decode('utf-8')
-                client_socket.send("서버 인지".encode('utf-8'))
             except Exception as e:
                 logger.error("[System][non client scoket] : "+str(e))
                 logger.info("[System] Client socket과 연결 해제")
