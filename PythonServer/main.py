@@ -13,17 +13,18 @@ from conversationEvaluator import ConversationEvaluator
 
 # [ 테스트 항목 ]
 # 1. 클라이언트가 정상적으로 종료되는가?
-# 2. 클라이언트가 서버와 재 연결 시도시 정상적으로 연결되는가?
-# 3. 클라이언트가 32byte를 초과하는 데이터 송수신시 발생하는 오류 확인
-# 4. 모델 정상 작동 여부 확인
-# 5. 클라이언트가 보낸 데이터가 String이 아닐때 서버에서 정상작동 여부
-#   5.1  예외처리
-#   5.2  if 문으로 string 값인지 확인후, 아니면 return, 129줄 이후 elif 를 추가하여 처리하면 좋을 듯 합니다만 발생되나요?
+# 2. 클라이언트가 서버와 재 연결 시도시 정상적으로 연결되는가?->클라이언트의 매니저를 싱글톤으로 구성
+# 3. 클라이언트가 32byte를 초과하는 데이터 송수신시 발생하는 오류 확인 -> 데이터가 짤림
+# 4. 모델 정상 작동 여부 확인 -> 입력값과 모델 결과값 데이터 전처리 작업 추가(커플링)
+# 5. 모델의 입력값을 위해 데이터 전처리 함수 구현(preprocess_sentence())(커플링)
+# 6. 클라이언트가 보낸 데이터가 String이 아닐때 서버에서 정상작동 여부
+#   6.1  예외처리 -> 서버 연결 종료
+#   6.2  데이터 전처리(list로 들어와도 데이터 전처리 작업으로 String값으로 변환)
+# 7. 각 모델을 편리하게 사용할 수 있도록 모듈화.(문제점 X, 편의성, 강건성, 확장성)
+# 8. time.sleep() 으로 인한 서버 유휴 대기시간 감소(성능 향상)
 
-# [잠재적버그] 
+# [잠재적버그]
 # time.sleep 사용시 비동기화 방식으로 확장했을 때 시퀀스가 꼬이는 상황이 발생할 수 있다.
-
-
 
 
 # 데이터 전처리 함수
@@ -31,14 +32,13 @@ def preprocess_sentence(sentence):
     # list의 []는 공백처리
     sentence = re.sub(r'[" "]+', " ", sentence)
     # 문장 부호 이외 다른 특수문자 제거
-    sentence = re.sub(r"([?.!,])", r" \1 ", sentence)   
+    sentence = re.sub(r"([?.!,])", r" \1 ", sentence)
     # 영문자, 한글, 숫자, 주요 특수문자 이외 모든 문자는 공백처리
-    sentence = re.sub(r"[^a-zA-Zㄱ-ㅎ가-힣0-9?.!,]+", " ", sentence)   
+    sentence = re.sub(r"[^a-zA-Zㄱ-ㅎ가-힣0-9?.!,]+", " ", sentence)
     # 단어 좌우 공백 제거
     sentence = sentence.strip()
 
     return sentence
-
 
 
 def server_print_test(client_socket):
@@ -49,10 +49,10 @@ def server_print_test(client_socket):
 def sentiment_model(client_socket, model_evaluator, text):
     print('[server][sentiment model] 클라이언트 메세지 : ', text)
     result = preprocess_sentence(str(text)).split(',')
-       
+
     predict = model_evaluator.predict_sentiment(result[0])
     print('[server][sentiment] 결과 : ', predict)
-    
+
     message = "[sentiment]@" + str(list(predict))
     client_socket.send(message.encode('utf-8'))
 
@@ -60,10 +60,10 @@ def sentiment_model(client_socket, model_evaluator, text):
 def emotion_model(client_socket, model_evaluator, text):
     print('[server][emotion model] 클라이언트 메세지 : ', text)
     result = preprocess_sentence(str(text)).split(',')
-    
+
     predict = model_evaluator.predict_emotion(result[0])
     print('[emotion] 결과 : ', predict)
-    
+
     message = "[emotion]@" + str(list(predict))
     client_socket.send(message.encode('utf-8'))
 
@@ -71,11 +71,11 @@ def emotion_model(client_socket, model_evaluator, text):
 def context_model(client_socket, model_evaluator, text):
     print('[server][context model] 클라이언트 메세지 : ', text)
     result = preprocess_sentence(str(text)).split(',')
-    print('[server][test] 분할 결과 : ',result)
-        
+    print('[server][test] 분할 결과 : ', result)
+
     predict = model_evaluator.predict_context(result[0], result[1])
     print('[context] 결과 : ', predict)
-    
+
     message = "[context]@" + str(predict)
     client_socket.send(message.encode('utf-8'))
 
@@ -83,17 +83,25 @@ def context_model(client_socket, model_evaluator, text):
 def sts_model(client_socket, model_evaluator, text):
     print('[server][sts model] 클라이언트 메세지 : ', text)
     result = preprocess_sentence(str(text)).split(',')
-    print('[server][test] 분할 결과 : ',result)    
-    
+    print('[server][test] 분할 결과 : ', result)
+
     predict = model_evaluator.predict_sts(result[0], result[1])
     print('[sts] 결과 : ', predict)
-    
+
     message = "[sts]@" + str(predict)
     client_socket.send(message.encode('utf-8'))
 
 
+def record_to_log(content):  # 디버깅용 로그파일에 기록하기 위한 함수
+    log_file_addr = "log.txt"
+    content_log = [content, '\n']
+    content_log = "".join(content_log)
+    with open(log_file_addr, 'a') as log_data:
+        log_data.write(content_log)
+
+
 def server_start():
-    host = '10.128.0.4'   #curl ifconfig.me 를 이용하여 외부ip를 알 수 있다고한다.
+    host = '10.128.0.4'  # curl ifconfig.me 를 이용하여 외부ip를 알 수 있다고한다.
     port = 8000
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -145,6 +153,8 @@ def server_start():
                 client_socket.close()
                 client_socket = None
                 client_address = None
+
+            time.sleep(0.5)
 
     client_socket.close()
     server_socket.close()
