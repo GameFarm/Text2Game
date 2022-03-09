@@ -32,7 +32,7 @@
 ### 본 프로젝트는 기존 텍스트 기반 시뮬레이터에서 유저가 주어진 선택지만 선택할 수 있는 수동적인 시스템을 개선하여, 유저에게 직접 텍스트를 입력받아 진행하는 게임 서비스입니다.
 
 <h2 id="1">
-	<b> 🛢data</b>
+	<b> 🛢Data</b>
 </h2>
 
 + 유저가 직접 입력한 텍스트로 게임을 진행할 수 있음.
@@ -75,8 +75,9 @@
 
 <h2 id="3">🏆 Reference</h2>
 
-[허깅페이스 버트 모델](https://huggingface.co/klue/bert-base)\
-[AI 허브](https://aihub.or.kr/)
+[HuggingFace klue-base-bert](https://huggingface.co/klue/bert-base)\
+[AI 허브](https://aihub.or.kr/)\
+[모두의 말뭉치](https://corpus.korean.go.kr/)\
 
 <hr>
 <h2 id="4">🏆 Result </h2>
