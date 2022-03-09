@@ -67,7 +67,8 @@
 <img src="https://img.shields.io/badge/jupyter-FF6F00?style=for-the-badge&logo=jupyter&logoColor=white">
 <img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white">
 <img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=numpy&logoColor=white">
-transformers, Logging, socket
+<br>
+<code>transformers</code>, <code>Logging</code>, <code>socket</code>
 </div>
 
 <hr>
