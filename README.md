@@ -31,27 +31,16 @@
 
 ### 본 프로젝트는 기존 텍스트 기반 시뮬레이터에서 유저가 주어진 선택지만 선택할 수 있는 수동적인 시스템을 개선하여, 유저에게 직접 텍스트를 입력받아 진행하는 게임 서비스입니다.
 
-- 유저가 직접 입력한 텍스트로 게임을 진행할 수 있음.
-- 입력된 텍스트를 BERT모델로 ‘ 문맥, 유사도, 감정, 감성’을 분류할 수 있음
-- ‘문맥, 유사도’ 모델은 이진 분류 모델로, 문장의 문맥과 유사성을 파악할 수 있음. 
-- ‘감정, 감성’ 모델은 다중 분류 모델로 7가지의 감정과 문장 긍부정을 분류할 수 있음
-- 게임 서비스에 모델을 자유롭게 추가하여 기능을 확장할 수 있음
-
-<hr>
-
 <h2 id="1">
 	<b> 🛢data</b>
 </h2>
 
-<<<<<<< HEAD
 + 유저가 직접 입력한 텍스트로 게임을 진행할 수 있음.
 + 입력된 텍스트를 BERT모델로 ‘ 문맥, 유사도, 감정, 감성’을 분류할 수 있음
 + ‘문맥, 유사도’ 모델은 이진 분류 모델로, 문장의 문맥과 유사성을 파악할 수 있음. 
 + ‘감정, 감성’ 모델은 다중 분류 모델로 7가지의 감정과 문장 긍부정을 분류할 수 있음
 + 게임 서비스에 모델을 자유롭게 추가하여 기능을 확장할 수 있음
-=======
->>>>>>> d3eebf439f133169822cabf07d2641ae41064a34
-
+<br>
 |                dataset                |  category   |     records      |                                     source                                      |
 | :-----------------------------------: | :---------: | :--------------: | :-----------------------------------------------------------------------------: |
 |         감성 분석 말뭉치 2020         |    감성     |      19,531      |                  [모두의 말뭉치](https://corpus.korean.go.kr/)                  |
@@ -66,7 +55,7 @@
 |               KLUE-NLI                | 문장 유사도 |      27,998      |          [KLUE](https://klue-benchmark.com/tasks/68/data/description)           |
 
 
-<div align=center><h2 id="2">🚀 Tech Stack</h2></div>
+<div><h2 id="2">🚀 Tech Stack</h2></div>
 <div align=center>
 <img src="https://img.shields.io/badge/unity-000000?style=for-the-badge&logo=unity&logoColor=white">
 <img src="https://img.shields.io/badge/csharp-77216F?style=for-the-badge&logo=csharp&logoColor=white">
@@ -77,10 +66,8 @@
 <img src="https://img.shields.io/badge/jupyter-FF6F00?style=for-the-badge&logo=jupyter&logoColor=white">
 <img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white">
 <img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=numpy&logoColor=white">
-</div>
-
-
 transformers, Logging, socket
+</div>
 
 <hr>
 
