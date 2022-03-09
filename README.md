@@ -65,10 +65,22 @@
 |               KLUE-STS                | 문장 유사도 |      12,187      |          [KLUE](https://klue-benchmark.com/tasks/67/data/description)           |
 |               KLUE-NLI                | 문장 유사도 |      27,998      |          [KLUE](https://klue-benchmark.com/tasks/68/data/description)           |
 
-<h2 id="2">🚀 Tech Stack</h2>
+
+<div align=center><h2 id="2">🚀 Tech Stack</h2></div>
+<div align=center>
 <img src="https://img.shields.io/badge/unity-000000?style=for-the-badge&logo=unity&logoColor=white">
 <img src="https://img.shields.io/badge/csharp-77216F?style=for-the-badge&logo=csharp&logoColor=white">
-Python,  Tensorflow, transformers, pandas, Google Cloud Platform, jupyter, Logging, socket, numpy, pandas
+<img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
+<img src="https://img.shields.io/badge/googlecloud-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white">
+<br>
+<img src="https://img.shields.io/badge/tensorflow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white">
+<img src="https://img.shields.io/badge/jupyter-FF6F00?style=for-the-badge&logo=jupyter&logoColor=white">
+<img src="https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white">
+<img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=numpy&logoColor=white">
+</div>
+
+
+transformers, Logging, socket
 
 <hr>
 
