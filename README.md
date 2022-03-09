@@ -75,7 +75,7 @@
 
 <h2 id="3">🏆 Reference</h2>
 
-[허깅페이스 버트 모델](https://huggingface.co/klue/bert-base)
+[허깅페이스 버트 모델](https://huggingface.co/klue/bert-base)\
 [AI 허브](https://aihub.or.kr/)
 
 <hr>
