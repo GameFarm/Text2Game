@@ -2,9 +2,9 @@
 -   ### <b> <a href="#0"> 📎Team introduce </a> </b>
 -   ### <b> <a href="#0.5"> 📎 Introduction </a> </b>
 -   ### <b> <a href="#1"> 📎 Data </a> </b>
--   ### <b> <a href="#2"> 📎 Technology </a> </b>
--   ### <b> <a href="#2"> 📎 Reference </a> </b>
--   ### <b> <a href="#3"> 📎 Result </a> </b>
+-   ### <b> <a href="#2"> 📎 Tech stack </a> </b>
+-   ### <b> <a href="#3"> 📎 Reference </a> </b>
+-   ### <b> <a href="#4"> 📎 Result </a> </b>
 
 <hr>
 
@@ -37,6 +37,11 @@
 - ‘감정, 감성’ 모델은 다중 분류 모델로 7가지의 감정과 문장 긍부정을 분류할 수 있음
 - 게임 서비스에 모델을 자유롭게 추가하여 기능을 확장할 수 있음
 
+<hr>
+
+<h2 id="1">
+	<b> 🛢data</b>
+</h2>
 |                dataset                |  category   |     records      |                                     source                                      |
 | :-----------------------------------: | :---------: | :--------------: | :-----------------------------------------------------------------------------: |
 |         감성 분석 말뭉치 2020         |    감성     |      19,531      |                  [모두의 말뭉치](https://corpus.korean.go.kr/)                  |
@@ -55,9 +60,10 @@ Unity, C#,Python,  Tensorflow, transformers, pandas, Google Cloud Platform, jupy
 
 <hr>
 
-<h2 id="3">🏆 Referencet</h2>
+<h2 id="3">🏆 Reference</h2>
 
-https://huggingface.co/klue/bert-base
+[허깅페이스 버트 모델](https://huggingface.co/klue/bert-base)
+[AI 허브](https://aihub.or.kr/)
 
 <hr>
 <h2 id="4">🏆 Result </h2>
