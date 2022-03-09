@@ -67,7 +67,8 @@
 
 <h2 id="2">🚀 Tech Stack</h2>
 <img src="https://img.shields.io/badge/unity-000000?style=for-the-badge&logo=unity&logoColor=white">
-Unity, C#,Python,  Tensorflow, transformers, pandas, Google Cloud Platform, jupyter, Logging, socket, numpy, pandas
+<img src="https://img.shields.io/badge/csharp-77216F?style=for-the-badge&logo=csharp&logoColor=white">
+Python,  Tensorflow, transformers, pandas, Google Cloud Platform, jupyter, Logging, socket, numpy, pandas
 
 <hr>
 
