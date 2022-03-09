@@ -1,80 +1,65 @@
-# Text2Game
+## <b> 💼 Contents </b>
+-   ### <b> <a href="#0"> 📎Team introduce </a> </b>
+-   ### <b> <a href="#0.5"> 📎 Introduction </a> </b>
+-   ### <b> <a href="#1"> 📎 Data </a> </b>
+-   ### <b> <a href="#2"> 📎 Technology </a> </b>
+-   ### <b> <a href="#2"> 📎 Reference </a> </b>
+-   ### <b> <a href="#3"> 📎 Result </a> </b>
 
-***
-프로젝트 진행 기간: 2022-01-22 ~ 2022.03.08
+<hr>
 
-최종 수정일: 2022-03.08
-+ _2022.03.08 - 프로젝트 마감 시간 확정 ( Zil_M )
-***
+<h2 id="0">
+    <b>💁 Team  introduce </b>
+</h2>
 
-<br>
+| Name               | Roll                                               |
+| -------------------- | --------------------------------------------------- |
+| **권오준**<a href="https://github.com/H43RO"> | 프로젝트 리더, Front 개발 총괄</a>      |
+| **고재승**<a href="https://github.com/pukuba"> | 데이터 엔지니어링, Front개발, 백엔드 개발</a>     |
+| **박장호**<a href="https://github.com/Jongminfire"> | 데이터 엔지니어링, 시나리오 기획</a> |
+| **정연걸**<a href="https://github.com/Jongminfire"> | 데이터 리서치</a> |
+| **최슬기** <a href="https://github.com/Jongminfire"> | 데이터 엔지니어링, 백엔드 개발</a> |
 
-### 프로젝트 소개
-***
-+ 머신러닝과 게임을 접목시키자!  
-+ 선택지를 고르는 건 따분해! -> 문장을 이해하는 인공지능 모델로 게임을 진행한다면?
-***
+<hr>
 
-<br>
+<h2 id="0.5">
+    <b>💁 Introduction</b>
+</h2>
 
-### 문제제기
-***
-+ 게임산업과 인공지능 기술 모두 급격히 발전하고 있으나, 정작 머신러닝이 적용된 게임은 극소수이다
-+ NLP 기반 머신러닝 기술이 적용된 소수의 사례도 문장 생성형 모델이 갖는 한계점에서 벗어나지 못함
-***
 
-<br>
 
-### 해결방안
-***
-<p align="center">
-  <img src="./forReadMe/image/scenarioBasedConversationModel.png" width="500"/>
-</p>
-<p align="center">&lt;Fig. 1> 시나리오 기반 대화 모델을 이용한 환류 모형</p><br>
 
-+ 문장 생성을 포기하는 대신 BERT를 이용해 자연어 감성분석 모델을 제작하여 사용
-+ 머신러닝 모델과 게임 시스템이 서로 input과 output을 주고받으면서 상호작용
+### 본 프로젝트는 기존 텍스트 기반 시뮬레이터에서,  유저가 주어진 선택지만 선택할 수 있는 수동적인 시스템을 개선하고자 유저가 직접 텍스트를 입력하는 게임 서비스입니다.
 
-<br><br>
++유저가 직접 입력한 텍스트로 게임을 진행할 수 있음.
++입력된 텍스트를 BERT모델로 ‘ 문맥, 유사도, 감정, 감성’을 분류할 수 있음
++‘문맥, 유사도’ 모델은 이진 분류 모델로, 문장의 문맥과 유사성을 파악할 수 있음. 
++‘감정, 감성’ 모델은 다중 분류 모델로 7가지의 감정과 문장 긍부정을 분류할 수 있음
++게임 서비스에 모델을 자유롭게 추가하여 기능을 확장할 수 있음
 
-___*예시___
-<p align="center">
-  <img src="./forReadMe/image/example1.jpg"  width="700"/>
-</p>
-<p align="center">&lt;Fig. 2> 기존 선택지 제시 게임 이미지 예시(The Witcher 3:wild Hunt)</p><br>
+|                dataset                |  category   |     records      |                                     source                                      |
+| :-----------------------------------: | :---------: | :--------------: | :-----------------------------------------------------------------------------: |
+|         감성 분석 말뭉치 2020         |    감성     |      19,531      |                  [모두의 말뭉치](https://corpus.korean.go.kr/)                  |
+|                챗봇QA                 |    감성     |      11,823      |                [GitHub](https://github.com/songys/Chatbot_data)                 |
+|      감정 분류를 위한 대화 음성       |    감정     |      43,991      |       [AIHub](https://aihub.or.kr/keti_data_board/language_intelligence#)       |
+| 한국어 감정 정보가 포함된 연속적 대화 |    감정     |      55,600      | [AIHub](https://aihub.or.kr/opendata/keti-data/recognition-laguage/KETI-02-010) |
+| 한국어 감정 정보가 포함된 단발성 대화 | 감정 / 문맥 | 38,594 /  25,472 | [AIHub](https://aihub.or.kr/opendata/keti-data/recognition-laguage/KETI-02-009) |
+|           감성 대화 말뭉치            | 감정 / 문맥 | 11,823 / 118,112 |                    [AIHub](https://aihub.or.kr/aidata/7978)                     |
+|         일상 대화 말뭉치 2020         |    문맥     |      17,184      |                  [모두의 말뭉치](https://corpus.korean.go.kr/)                  |
+|              한국어 SNS               |    문맥     |      60,288      |                    [AIHub](https://aihub.or.kr/aidata/30718)                    |
+|               KLUE-STS                | 문장 유사도 |      12,187      |          [KLUE](https://klue-benchmark.com/tasks/67/data/description)           |
+|               KLUE-NLI                | 문장 유사도 |      27,998      |          [KLUE](https://klue-benchmark.com/tasks/68/data/description)           |
 
-<br><br>
+<h2 id="2">🚀 Tech Stack</h2>
+Unity, C#,Python,  Tensorflow, transformers, pandas, Google Cloud Platform, jupyter, Logging, socket, numpy, pandas
 
-<p align="center">
-  <img src="./forReadMe/image/example2.jpg"  width="700"/>
-</p>
-<p align="center">&lt;Fig. 3> 시나리오 기반 대화 모델을 이용한 게임 이미지 예시(The Witcher 3:wild Hunt)</p><br>
+<hr>
 
-<br>
+<h2 id="3">🏆 Referencet</h2>
 
-그림과 같이 기존 게임에서 객관식 선택지를 요구하는 상황에서 머신러닝 모델을 사용하여 주관식 문장을 입력받는 방식으로 변경
-***
+https://huggingface.co/klue/bert-base
 
-<br>
+<hr>
+<h2 id="4">🏆 Result </h2>
+시연사진 및 동영상
 
-### 모델 파이프라인
-***
-<p align="center">
-  <img src="./forReadMe/image/conversationEmotionEvaluator.png" width="550"/>
-</p>
-<p align="center">&lt;Fig. 4> 대화 감성 평가 모델</p><br>
-
-두 개의 BERT 모델을 활용하여 플레이어의 문장을 인식한다.  
-첫 번째 Check Conversation Context 모델은 문장이 맥락에 맞는 문장인지 판별한다.  
-두 번째 sentiment-analysis 모델은 문장의 의미가 긍정인지, 혹은 부정인지 감성분석을 수행한다.  
-이 두 가지 모델을 결합하여 플레이어가 어떤 의도로 문장을 입력했는지 판단하여 게임 시스템에 값을 전달한다.  
-***
-
-<br><br>
-
-### _Reference code_
-***
-+ Korean BERT pre-trained cased (KoBERT), Github, _last modified, accessed 2020.01.22, https://github.com/SKTBrain/KoBERT.
-+ Korean NLU Benchmark, Github, _last modified, accessed 2020.01.22, https://github.com/KLUE-benchmark/KLUE.
-+ KLUE BERT base, Hugging Face, _last modified, accessed 2020.01.22, https://huggingface.co/klue/bert-base.
-***
