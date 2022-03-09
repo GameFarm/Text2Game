@@ -66,7 +66,7 @@
 |               KLUE-NLI                | 문장 유사도 |      27,998      |          [KLUE](https://klue-benchmark.com/tasks/68/data/description)           |
 
 <h2 id="2">🚀 Tech Stack</h2>
-<img src="https://img.shields.io/badge/unity-#FFFFFF?style=for-the-badge&logo=unity&logoColor=white">
+<img src="https://img.shields.io/badge/unity-FFFFFF?style=for-the-badge&logo=unity&logoColor=white">
 Unity, C#,Python,  Tensorflow, transformers, pandas, Google Cloud Platform, jupyter, Logging, socket, numpy, pandas
 
 <hr>
