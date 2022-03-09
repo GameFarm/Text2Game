@@ -62,4 +62,3 @@ https://huggingface.co/klue/bert-base
 <hr>
 <h2 id="4">🏆 Result </h2>
 시연사진 및 동영상
-
