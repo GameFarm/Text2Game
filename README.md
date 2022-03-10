@@ -75,7 +75,7 @@
 
 <h2 id="3">🏆 Reference</h2>
 
-[HuggingFace klue-base-bert](https://huggingface.co/klue/bert-base)\
+[HuggingFace klue/bert-base](https://huggingface.co/klue/bert-base)\
 [AI 허브](https://aihub.or.kr/)\
 [모두의 말뭉치](https://corpus.korean.go.kr/)
 
