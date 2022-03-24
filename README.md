@@ -83,4 +83,6 @@
 <h2 id="4">🏆 Result </h2>
 <div align=center>
 <img width="45%" src="https://user-images.githubusercontent.com/57059776/159938156-7693e82f-7191-4264-a847-e5244db0b5d6.png"><img width="45%" src="https://user-images.githubusercontent.com/57059776/159938841-075cf71d-60fc-451c-8e17-27fa4af69b0c.png">
+<br>
+<img width="90%" src="https://user-images.githubusercontent.com/57059776/159946979-0c8ca876-1508-4c97-b0b8-85ae1946fb8b.gif">
 </div>
