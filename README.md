@@ -31,15 +31,15 @@
 
 ### 본 프로젝트는 기존 텍스트 기반 시뮬레이터에서 유저가 주어진 선택지만 선택할 수 있는 수동적인 시스템을 개선하여, 유저에게 직접 텍스트를 입력받아 진행하는 게임 서비스입니다.
 
-<h2 id="1">
-	<b> 🛢data</b>
-</h2>
-
 + 유저가 직접 입력한 텍스트로 게임을 진행할 수 있음.
 + 입력된 텍스트를 BERT모델로 ‘ 문맥, 유사도, 감정, 감성’을 분류할 수 있음
 + ‘문맥, 유사도’ 모델은 이진 분류 모델로, 문장의 문맥과 유사성을 파악할 수 있음. 
 + ‘감정, 감성’ 모델은 다중 분류 모델로 7가지의 감정과 문장 긍부정을 분류할 수 있음
 + 게임 서비스에 모델을 자유롭게 추가하여 기능을 확장할 수 있음
+
+<h2 id="1">
+	<b> 🛢Data</b>
+</h2>
 
 
 |                dataset                |  category   |     records      |                                     source                                      |
@@ -75,9 +75,14 @@
 
 <h2 id="3">🏆 Reference</h2>
 
-[허깅페이스 버트 모델](https://huggingface.co/klue/bert-base)
-[AI 허브](https://aihub.or.kr/)
+[HuggingFace klue/bert-base](https://huggingface.co/klue/bert-base)\
+[AI 허브](https://aihub.or.kr/)\
+[모두의 말뭉치](https://corpus.korean.go.kr/)
 
 <hr>
 <h2 id="4">🏆 Result </h2>
-시연사진 및 동영상
+<div align=center>
+<img width="45%" src="https://user-images.githubusercontent.com/57059776/159938156-7693e82f-7191-4264-a847-e5244db0b5d6.png"><img width="45%" src="https://user-images.githubusercontent.com/57059776/159938841-075cf71d-60fc-451c-8e17-27fa4af69b0c.png">
+<br>
+<img width="90%" src="https://user-images.githubusercontent.com/57059776/159946979-0c8ca876-1508-4c97-b0b8-85ae1946fb8b.gif">
+</div>
