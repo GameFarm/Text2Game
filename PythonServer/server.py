@@ -92,7 +92,7 @@ def record_to_log(content):   #디버깅용 로그파일에 기록하기 위한 
 
 
 def server_start():
-    host = 'ip-172-31-23-109.us-east-2.compute.internal'   #curl ifconfig.me 를 이용하여 외부ip를 알 수 있다고한다.
+    host = 'ip-172-31-23-109.us-east-3.compute.internal'   #curl ifconfig.me 를 이용하여 외부ip를 알 수 있다고한다.
     port = 8000
     
     logger = logging.getLogger("Zil_M")
