@@ -12,7 +12,7 @@ public class Chat_Client : MonoBehaviour
     TcpClient client;
     StreamReader reader;
     NetworkStream stream;
-    string serverIP = "127.0.0.1";
+    string serverIP = "ip-172-31-23-109.us-east-3.compute.internal";
     int port = 8000;
     byte[] receivedBuffer;
     bool socketReady = false;
