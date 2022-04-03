@@ -36,22 +36,18 @@ public class Chat_Client : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S))
         {
-            Delay(1000);
             send_message("sentiment,sentiment data");
         }
         if (Input.GetKey(KeyCode.E))
         {
-            Delay(1000);
             send_message("emotion,emotion data");
         }
         if (Input.GetKey(KeyCode.C))
         {
-            Delay(1000);
             send_message("context,context data");
         }
         if (Input.GetKey(KeyCode.Q))
         {
-            Delay(1000);
             send_message("question,question data");
         }
     }
