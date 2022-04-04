@@ -162,7 +162,7 @@ def server_start():
                 client_socket.close()
                 client_socket = None
                 client_address = None
-                time.sleep(0.5)
+                #time.sleep(0.5)
             
             logger.info("[System] Server Pause 0.5 sec")
             time.sleep(0.5)
