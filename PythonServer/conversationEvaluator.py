@@ -7,10 +7,10 @@ class ConversationEvaluator:
     def __init__(self):
         self.tokenizer = BertTokenizer.from_pretrained('../scenarioBasedModel/model/tokenizer')
         
-        self.context = TFBertForSequenceClassification.from_pretrained('../scenarioBasedModel/model/context')
-        self.sentiment = TFBertForSequenceClassification.from_pretrained('../scenarioBasedModel/model/sentiment')
-        self.emotion = TFBertForSequenceClassification.from_pretrained('../scenarioBasedModel/model/emotion')
-        self.sts = TFBertForSequenceClassification.from_pretrained('../scenarioBasedModel/model/sts')
+        self.context = TFBertForSequenceClassification.from_pretrained('../scenarioBasedModel/model/context\ model')
+        self.sentiment = TFBertForSequenceClassification.from_pretrained('../scenarioBasedModel/model/sentiment\ model')
+        self.emotion = TFBertForSequenceClassification.from_pretrained('../scenarioBasedModel/model/emotion\ model')
+        self.sts = TFBertForSequenceClassification.from_pretrained('../scenarioBasedModel/model/sts\ model')
     
     def filt_str(self, text: str):
         #processing sentence
