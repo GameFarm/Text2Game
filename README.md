@@ -14,11 +14,11 @@
 
 | Name               | Roll                                               |
 | -------------------- | --------------------------------------------------- |
-| **권오준**<a href="https://github.com/H43RO"> | 프로젝트 리더, Front 개발 총괄</a>      |
-| **고재승**<a href="https://github.com/pukuba"> | 데이터 엔지니어링, Front개발, 백엔드 개발</a>     |
-| **박장호**<a href="https://github.com/Jongminfire"> | 데이터 엔지니어링, 시나리오 기획</a> |
-| **정연걸**<a href="https://github.com/Jongminfire"> | 데이터 리서치</a> |
-| **최슬기** <a href="https://github.com/Jongminfire"> | 데이터 엔지니어링, 백엔드 개발</a> |
+| **권오준**<a href="https://github.com/H43RO"> | 프로젝트 리더, 게임 개발 총괄</a>      |
+| **고재승**<a href="https://github.com/pukuba"> | 데이터 엔지니어링, 게임 개발</a>     |
+| **박장호**<a href="https://github.com/Jongminfire"> | 데이터 리서처, 시나리오 기획</a> |
+| **정연걸**<a href="https://github.com/Jongminfire"> | 데이터 리서처</a> |
+| **최슬기** <a href="https://github.com/Jongminfire"> | 데이터 사이언스</a> |
 
 <hr>
 
